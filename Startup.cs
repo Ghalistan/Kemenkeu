@@ -23,7 +23,7 @@ namespace Kemenkeu
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<projectContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+                opt.UseInMemoryDatabase("kemenkeu"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory

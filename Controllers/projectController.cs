@@ -22,6 +22,8 @@ namespace Kemenkeu.Controllers
             if (_context.projectItems.Count() == 0)
             {
                 _context.projectItems.Add(new project { NamaProyek = "Test Nama Proyek", detailProyek = "Test Detail Proyek" });
+                _context.projectItems.Add(new project { NamaProyek = "Test kedua", detailProyek = "Test detil kedua" });
+                _context.projectItems.Add(new project { NamaProyek = "Test projek 3", detailProyek = "Test detail ketiga" });
                 _context.SaveChanges();
             }
         }
