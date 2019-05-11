@@ -10,8 +10,7 @@ namespace Kemenkeu.Models
     {
         public BeritaContext(DbContextOptions<BeritaContext> options)
             : base(options)
-        {
-        }
+        { }
 
         public DbSet<BeritaItem> BeritaItems { get; set; }
     }

@@ -13,5 +13,6 @@ namespace Kemenkeu.Models
         { }
 
         public DbSet<project> projectItems { get; set; }
+        public DbSet<BeritaItem> BeritaItems { get; set; }
     }
 }
