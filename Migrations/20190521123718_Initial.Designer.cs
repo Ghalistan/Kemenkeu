@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kemenkeu.Migrations
 {
     [DbContext(typeof(KemenkeuContext))]
-    [Migration("20190521120526_Initial")]
+    [Migration("20190521123718_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
