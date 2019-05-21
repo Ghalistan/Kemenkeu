@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Kemenkeu.Models;
 using Microsoft.EntityFrameworkCore;
+using Kemenkeu.Models;
 
 namespace Kemenkeu
 {
@@ -22,9 +22,8 @@ namespace Kemenkeu
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<projectContext>(opt =>
-                opt.UseInMemoryDatabase("kemenkeu"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<KemenkeuContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KemenkeuDb")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
