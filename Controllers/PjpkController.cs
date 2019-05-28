@@ -11,23 +11,23 @@ namespace Kemenkeu.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PjpkController : ControllerBase
+    public class PJPKController : ControllerBase
     {
         private readonly KemenkeuContext _context;
 
-        public PjpkController(KemenkeuContext context)
+        public PJPKController(KemenkeuContext context)
         {
             _context = context;
         }
 
-        // GET: api/Pjpk
+        // GET: api/PJPK
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pjpk>>> GetPjpk()
         {
             return await _context.Pjpk.ToListAsync();
         }
 
-        // GET: api/Pjpk/5
+        // GET: api/PJPK/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pjpk>> GetPjpk(int id)
         {
@@ -41,7 +41,7 @@ namespace Kemenkeu.Controllers
             return pjpk;
         }
 
-        // PUT: api/Pjpk/5
+        // PUT: api/PJPK/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPjpk(int id, Pjpk pjpk)
         {
@@ -71,7 +71,7 @@ namespace Kemenkeu.Controllers
             return NoContent();
         }
 
-        // POST: api/Pjpk
+        // POST: api/PJPK
         [HttpPost]
         public async Task<ActionResult<Pjpk>> PostPjpk(Pjpk pjpk)
         {
@@ -95,7 +95,7 @@ namespace Kemenkeu.Controllers
             return CreatedAtAction("GetPjpk", new { id = pjpk.Id }, pjpk);
         }
 
-        // DELETE: api/Pjpk/5
+        // DELETE: api/PJPK/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Pjpk>> DeletePjpk(int id)
         {

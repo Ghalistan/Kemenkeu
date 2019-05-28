@@ -15,6 +15,8 @@ namespace Kemenkeu.Models
         {
         }
 
+        public virtual DbSet<Berita> Berita { get; set; }
+        public virtual DbSet<DetailProyek> DetailProyek { get; set; }
         public virtual DbSet<Pjpk> Pjpk { get; set; }
         public virtual DbSet<Proyek> Proyek { get; set; }
 
@@ -26,33 +28,104 @@ namespace Kemenkeu.Models
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity<Pjpk>(entity =>
+            modelBuilder.Entity<Berita>(entity =>
             {
-                entity.ToTable("PJPK");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.DetailBerita)
+                    .IsRequired()
+                    .HasColumnName("Detail_Berita")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Detail)
+                entity.Property(e => e.Foto)
                     .IsRequired()
                     .HasColumnType("text");
 
-                entity.Property(e => e.Title)
+                entity.Property(e => e.JudulBerita)
                     .IsRequired()
+                    .HasColumnName("Judul_Berita")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TanggalDiedit)
+                    .HasColumnName("Tanggal_Diedit")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.TanggalDitambahkan)
+                    .HasColumnName("Tanggal_Ditambahkan")
+                    .HasColumnType("date");
             });
 
-            modelBuilder.Entity<Proyek>(entity =>
+            modelBuilder.Entity<DetailProyek>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("Detail_Proyek");
 
-                entity.Property(e => e.DetailProyek)
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.DetailProyek1)
                     .IsRequired()
                     .HasColumnName("Detail_Proyek")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Kota)
+                entity.Property(e => e.Foto)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.DetailProyek)
+                    .HasForeignKey<DetailProyek>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Detail_Proyek_Proyek");
+            });
+
+            modelBuilder.Entity<Pjpk>(entity =>
+            {
+                entity.ToTable("PJPK");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Detail)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Foto)
+                    .IsRequired()
+                    .HasColumnType("text");
+
+                entity.Property(e => e.Judul)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TanggalDiedit)
+                    .HasColumnName("Tanggal_Diedit")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.TanggalDitambahkan)
+                    .HasColumnName("Tanggal_Ditambahkan")
+                    .HasColumnType("date");
+            });
+
+            modelBuilder.Entity<Proyek>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Fasilitas)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Lokasi)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -63,10 +136,9 @@ namespace Kemenkeu.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NilaiProyek).HasColumnName("Nilai_Proyek");
-
-                entity.Property(e => e.Provinsi)
+                entity.Property(e => e.Pjpk)
                     .IsRequired()
+                    .HasColumnName("PJPK")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -75,11 +147,18 @@ namespace Kemenkeu.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StatusProyek)
+                entity.Property(e => e.Status)
                     .IsRequired()
-                    .HasColumnName("Status_Proyek")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TanggalDiedit)
+                    .HasColumnName("Tanggal_Diedit")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.TanggalDitambahkan)
+                    .HasColumnName("Tanggal_Ditambahkan")
+                    .HasColumnType("date");
             });
         }
     }
