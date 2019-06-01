@@ -17,7 +17,11 @@ namespace Kemenkeu
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
+            var host = CreateWebHostBuilder(args)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .Build();
 
             using (var scope = host.Services.CreateScope())
             {
